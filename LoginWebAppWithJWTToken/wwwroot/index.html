@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserLogin</title>
+</head>
+<body>
+
+<div id="welcomeUser" style="display: none">
+    <h1>Welcome <span id="userName"></span>!</h1>
+    <input type="button" value="Log out" id="logOut">
+</div>
+
+<div id="signUp" style="display: none">
+    <p>Enter Email <input type="text" id="enterEmail"></p>
+    <p>Enter password!<input type="password" id="enterPassword"></p>
+    <input type="submit" id="signUpEntered" value="SignUp">
+    <input type="submit" id="back" value="Back">
+</div>
+
+<div id="loginForm">
+    <h3>Login!</h3>
+    <p>
+        <label>Enter your email!</label>
+        <input type="text" id="email">
+    </p>
+    <p>
+        <labe>Enter your password!</labe>
+        <input type="password" id="password">
+    </p>
+    <input type="submit" value="Login" id="submitLogin">
+    <input type="submit" value="SignUp" id="submitSignUp">
+</div>
+
+<script>
+    var token = "accessToken";
+    document.getElementById("submitLogin").addEventListener("click", async e => {
+        e.preventDefault();
+
+        const response = await fetch("/login", {
+            method: "POST",
+            headers: {"Accept": "application/json", "Content-Type": "application/json"},
+            body: JSON.stringify({
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            })
+        });
+
+        if (response.ok == true) {
+            const data = await response.json();
+
+            document.getElementById("userName").innerText = data.username;
+            document.getElementById("welcomeUser").style.display = "block";
+            document.getElementById("loginForm").style.display = "none";
+            sessionStorage.setItem(token, data.access_token)
+        } else {
+            console.log("Status: " + response.status);
+        }
+    });
+
+    document.getElementById("logOut").addEventListener("click", async e => {
+        e.preventDefault();
+
+        document.getElementById("userName").innerText = "";
+        document.getElementById("welcomeUser").style.display = "none";
+        document.getElementById("loginForm").style.display = "block";
+    });
+
+    document.getElementById("submitSignUp").addEventListener("click", async e => {
+        e.preventDefault();
+
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("signUp").style.display = "block";
+
+        document.getElementById("signUpEntered").addEventListener("click", async e => {
+            var data = {
+                email: document.getElementById("enterEmail").value,
+                password: document.getElementById("enterPassword").value
+            }
+
+            const response = await fetch("/signUp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            if(response.ok == true){
+                alert("Successful")
+            }
+            else{
+                alert("Error!")
+            }
+        })
+    });
+    
+    document.getElementById("back").addEventListener("click", async e => {
+       e.preventDefault();
+       
+       document.getElementById("signUp").style.display = "none";
+       document.getElementById("loginForm").style.display = "block";
+    });
+</script>
+</body>
+</html>

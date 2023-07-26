@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "YMDhuqrAPSKw9W7oMBlMgbT6HXziT8dwCV27OAf3yGc=",
+  "Source": "LoginWebAppWithJWTToken",
+  "BasePath": "_content/LoginWebAppWithJWTToken",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "LoginWebAppWithJWTToken/wwwroot",
+      "Source": "LoginWebAppWithJWTToken",
+      "ContentRoot": "/home/ebet/myTasks/LoginWebAppWithJWTToken/wwwroot/",
+      "BasePath": "_content/LoginWebAppWithJWTToken",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/ebet/myTasks/LoginWebAppWithJWTToken/wwwroot/index.html",
+      "SourceId": "LoginWebAppWithJWTToken",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ebet/myTasks/LoginWebAppWithJWTToken/wwwroot/",
+      "BasePath": "_content/LoginWebAppWithJWTToken",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    }
+  ]
+}
