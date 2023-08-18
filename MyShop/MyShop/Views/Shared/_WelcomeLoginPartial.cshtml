@@ -1,0 +1,19 @@
+@using Microsoft.AspNetCore.Identity
+@using MyShop.Authorization
+@inject SignInManager<ApplicationUser> signManager;
+@inject UserManager<ApplicationUser> userManager;
+
+<ul class="navbar-nav align-items-end">
+	<li class="nav-item text-white mx-3">
+		<a asp-action="MyBooks" asp-controller="Profile" class="btn text-white">Bucket</a>
+	</li>
+	<li class="nav-item text-white">
+		@*  To do profile user  *@
+		<a asp-action="ViewProfile" asp-controller="Profile" class="btn text-white">Profile</a>
+	</li>
+	<li class="nav-item text-white mx-3">
+		<a asp-action="Logout" asp-controller="Account" class="btn text-white">
+			Logout
+		</a>
+	</li>
+</ul>

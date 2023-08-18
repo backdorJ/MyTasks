@@ -1,0 +1,9 @@
+Claim - это объек в котором хранятся данные о пользователе 
+например: new Claim(ClaimTypes.Name, "Damir");
+
+ClaimsIdentity - класс в который можно засунуть объект Claim с данными о пользователе 
+и тип аунтификации! например: ClaimsIdentity(claims, "Cookies")
+
+HttpContext.User.Identity - имеет тип ClaimsIdentity 
+у User есть свойства AuthenticationType - тип аунтификации 
+IsAuthenticated - аунтифицирован ли он

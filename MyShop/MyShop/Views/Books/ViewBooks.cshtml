@@ -1,0 +1,38 @@
+@using System.Text
+@model List<BookViewModel>
+
+<div class="row">
+	@foreach (var book in Model)
+	{
+		var sb = new StringBuilder();
+		if (book.PhotoPath.StartsWith("https"))
+		{
+			sb.Clear();
+			sb.Append(book.PhotoPath);
+		}
+		else
+		{
+			sb.Clear();
+			sb.Append($@"/images/books/{book.PhotoPath}");
+		}
+		<div class="col-4">
+			<div class="card mb-3 fixed-height-card" style="max-width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="@sb.ToString()" class="img-fluid rounded-start" alt="logo">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">@book.Name</h5>
+							<p class="card-text">@book.Description[..50]...</p>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a asp-action="ViewDetailBook" asp-controller="Books" asp-route-id="@book.Id" class="btn btn-success">View</a>
+						<a asp-action="AddToFavourite" asp-controller="Books" asp-route-Id="@book.Id" class="btn btn-primary">Go Favourite</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>

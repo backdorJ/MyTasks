@@ -1,0 +1,58 @@
+﻿@using System.Text
+@model List<BookViewModel>
+@{
+	ViewData["Title"] = "Home Page";
+	Layout = "_Layout";
+}
+
+<div class="container-fluid">
+	<section class="carousell row">
+		<div id="carouselExampleIndicators" class="carousel slide">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="/images/sells-carousel.jpg" class="d-block w-100" alt="photo">
+				</div>
+				<div class="carousel-item">
+					<img src="/images/best-c-sharp-books.jpg" class="d-block w-100" alt="photo">
+				</div>
+				<div class="carousel-item">
+					<img src="/images/romanBooks.jpg" class="d-block w-100" alt="photo">
+				</div>
+				<div class="carousel-item">
+					<img src="/images/carousel-item.jpg" class="d-block w-100" alt="photo">
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</section>
+</div>
+
+<div class="container">
+	<section class="row banner">
+		@foreach (var book in Model)
+		{
+			<div class="col-4">
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h5 class="card-title text-danger">@book.Name</h5>
+						<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+						<a asp-action="" asp-controller="" asp-rout-id="" class="btn btn-primary">View more</a>
+					</div>
+				</div>
+			</div>
+		}
+	</section>
+</div>

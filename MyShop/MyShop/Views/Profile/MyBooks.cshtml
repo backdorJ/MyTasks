@@ -1,0 +1,54 @@
+@using System.Text
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<BookViewModel>
+
+@{
+	var sum = Model.Sum(x => x.Price);
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-5">
+			<div class="total-text">
+				<h3 class="text-white">Total: @sum$</h3>
+			</div>
+		</div>
+	</div>
+	<div class="row row-cols-1 row-cols-md-2 g-4">
+		@if (Model is null)
+		{
+			<h1 class="text-center text-white">Wrapper is empty!</h1>
+		}
+		else
+		{
+			@foreach (var book in Model)
+			{
+				var sb = new StringBuilder();
+				if (book.PhotoPath.StartsWith("https"))
+				{
+					sb.Clear();
+					sb.Append(book.PhotoPath);
+				}
+				else
+				{
+					sb.Clear();
+					sb.Append($@"/images/books/{book.PhotoPath}");
+				}
+				<div class="col-4" style="width: 400px;">
+					<div class="card" style="width: 300px">
+						<img src="@sb.ToString()" class="card-img-top" alt="...">
+						<div class="card-body d-flex flex-column">
+							<h5 class="card-title">@book.Name</h5>
+							<p class="card-text">Price: @book.Price</p>
+						</div>
+						<div class="card-footer justify-content-between">
+							<a class="btn btn-success">Buy</a>
+							<a asp-action="DeleteBookFromFavourite" asp-controller="Profile"
+							   asp-route-id="@book.Id" class="btn btn-secondary">Delete</a>
+						</div>
+					</div>
+				</div>
+			}
+		}
+	</div>
+</div>

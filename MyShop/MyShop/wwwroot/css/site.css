@@ -1,0 +1,111 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  margin-bottom: 100px;
+  background-image: url("../images/book-background-6kqj35nciqjfiflz.jpg");
+  background-size: cover;
+}
+
+.registration{
+  max-width: 600px; /* Задайте желаемую максимальную ширину */
+  margin: 0 auto;
+}
+
+.custom-checkbox {
+  /* Скрыть оригинальный чекбокс */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: background-color 0.2s, border-color 0.2s;
+  margin-right: 8px;
+}
+
+.custom-checkbox:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.custom-checkbox:checked:after {
+  content: '\2713'; /* Unicode символ галочки */
+  color: white;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+}
+
+.form-check-label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form-check-label:hover .custom-checkbox {
+  border-color: #007bff;
+}
+
+.bg-nav{
+  background-color: black;
+}
+
+.imgSection{
+  justify-content: center;
+}
+
+.menuItems{
+  height: 150px;
+}
+
+.leftMenu > ul > li{
+  border-bottom: 1px solid gray;
+}
+.leftMenu a{
+  color: white;
+}
+
+.leftMenu a::before{
+  color: black;
+}
+
+.banner{
+  margin-top: 100px;
+}
+
+.fixed-height-card{
+  height: 250px;
+}
+
+.carousell{
+  margin-top: 50px;
+}
+
+.card-footer {
+  padding: 0.5rem 1rem;
+  background-color: rgba(0,0,0,.03);
+  border-top: 1px solid rgba(0,0,0,.125);
+}
+
+.total-text{
+  margin-bottom: 50px;
+}
+
+.form-edit{
+}

@@ -1,0 +1,41 @@
+@model RegistrationViewModel
+
+@{
+	ViewData["Title"] = "Registrations";
+	Layout = "_LayoutRegistrationsAndLogin";
+}
+
+<form method="post" asp-action="Register" asp-controller="Account">
+	<h1 class="text-center text-white">Registrations</h1>
+	<div asp-validation-summary="All"></div>
+	<div class="form-group">
+		<label class="text-white" asp-for="Email"></label>
+		<input asp-for="Email" class="form-control"/>
+		<span asp-validation-for="Email"></span>
+	</div>
+	<div class="form-group">
+		<label class="text-white" asp-for="Username"></label>
+		<input asp-for="Username" class="form-control"/>
+		<span asp-validation-for="Username"></span>
+	</div>
+	<div class="form-group">
+		<label class="text-white" asp-for="Password"></label>
+		<input asp-for="Password" class="form-control"/>
+		<span asp-validation-for="Password"></span>
+	</div>
+	<div class="form-group">
+		<label class="text-white" asp-for="ConfirmPassword"></label>
+		<input asp-for="ConfirmPassword" class="form-control"/>
+		<span asp-validation-for="ConfirmPassword"></span>
+	</div>
+	<div class="form-group">
+		<input class="form-check-input text-white" asp-for="Gender" name="Gender" type="radio" value="Male">
+		<label class="form-check-label text-white"><span class="bi bi-gender-male"></span> Male</label>
+		<input class="form-check-input text-white" asp-for="Gender" name="Gender" type="radio" value="Female">
+		<label class="form-check-label text-white"><span class="bi bi-gender-female"></span> Female</label>
+	</div>
+	<div class="form-group my-3">
+		<button type="submit" class="btn btn-success">Register</button>
+		<a class="btn btn-secondary" asp-action="Login" asp-controller="Account">Login</a>
+	</div>
+</form>

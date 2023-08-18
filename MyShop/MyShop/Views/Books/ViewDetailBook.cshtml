@@ -1,0 +1,42 @@
+@using System.Text
+@model BookViewModel
+@{
+	var sb = new StringBuilder();
+	if (Model.PhotoPath.StartsWith("https"))
+	{
+		sb.Clear();
+		sb.Append(Model.PhotoPath);
+	}
+	else
+	{
+		sb.Clear();
+		sb.Append($"/images/books/{Model.PhotoPath}");
+	}
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-3">
+			<div class="logo-book">
+				<img class="border-success" src="@sb.ToString()" alt="" style="width: 300px">
+			</div>
+		</div>
+		<div class="col-5">
+			<div class="text-book text-white">
+				<h2 class="text-decoration-underline">@Model.Name</h2>
+			</div>
+			<div class="decription-text text-white">
+				<p>@Model.Description</p>
+			</div>
+			<div class="price-text text-danger">
+				<p>Price @Model.Price$</p>
+			</div>
+			<div class="button">
+				<a asp-action="" asp-controller="" class="btn btn-success">Buy</a>
+				<a asp-action="AddToFavourite" asp-controller="Books"
+				   asp-route-id="@Model.Id"
+				   class="btn btn-primary">Go Favourite</a>
+			</div>
+		</div>
+	</div>
+</div>

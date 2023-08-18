@@ -1,0 +1,33 @@
+@model LoginViewModel
+
+@{
+	ViewData["Title"] = "Login";
+	Layout = "_LayoutRegistrationsAndLogin";
+}
+
+<form method="post" asp-action="Login" asp-controller="Account">
+	<div class="text-white" asp-validation-summary="All"></div>
+	<h1 class="text-center text-white">Login</h1>
+	<div class="form-group">
+		<label class="text-white" asp-for="Email"></label>
+		<input asp-for="Email" class="form-control"/>
+		<span class="text-white" asp-validation-for="Email"></span>
+	</div>
+	<div class="form-group">
+		<label class="text-white" asp-for="Password"></label>
+		<input asp-for="Password" class="form-control"/>
+		<span class="text-white" asp-validation-for="Password"></span>
+	</div>
+	<div class="form-group">
+		<div class="checkbox">
+			<label asp-for="RememberMe" class="text-white"> Remember Me?
+				<input asp-for="RememberMe">
+				@Html.DisplayFor(x => x.RememberMe)
+			</label>
+		</div>
+	</div>
+	<div class="form-group my-3">
+		<button type="submit" class="btn btn-success">Login</button>
+		<a class="btn btn-secondary" asp-action="Register" asp-controller="Account">Register</a>
+	</div>
+</form>

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>7f627db9-da99-4f95-9efd-17aacda18285</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="NetEscapades.Extensions.Logging.RollingFile" Version="2.5.0" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
+      <PackageReference Include="Seq.Extensions.Logging" Version="6.1.0" />
+      <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+      <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+      <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
+      <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Implementashions\Services" />
+      <Folder Include="Logs" />
+    </ItemGroup>
+
+</Project>
