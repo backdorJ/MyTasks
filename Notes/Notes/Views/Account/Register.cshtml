@@ -1,0 +1,44 @@
+@model RegisterViewModel
+
+@{
+	Layout = "_LayoutRegistrationAndLogin";
+	ViewData["Title"] = "Invite in team!";
+}
+
+<div class="container">
+	<div class="row login">
+		<div class="col" style="margin-top: 20px">
+			<div class="login-form">
+				<div>
+					<h4 class="text-center text-white">Create account!</h4>
+				</div>
+				<form method="post" asp-action="Register" asp-controller="Account">
+					<div class="form-group">
+						<label asp-for="Email"></label>
+						<input asp-for="Email" class="form-control">
+						<span class="text-danger" asp-validation-for="Email"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="UserName"></label>
+						<input asp-for="UserName" class="form-control">
+						<span class="text-danger" asp-validation-for="UserName"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Password"></label>
+						<input asp-for="Password" class="form-control">
+						<span class="text-danger" asp-validation-for="Password"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="ConfirmPassword"></label>
+						<input asp-for="ConfirmPassword" class="form-control">
+						<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success btnFormLogin">Join in team!</button>
+						<a asp-action="Login" asp-controller="Account" class="btn btn-secondary btnFormLogin">Login</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

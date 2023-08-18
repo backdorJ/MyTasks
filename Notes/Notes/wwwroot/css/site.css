@@ -1,0 +1,96 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-family: 'Oswald', sans-serif;
+  
+}
+
+.backLoginRegisterStyle{
+  background-color: #b6a8b6;
+}
+
+.login-form{
+  margin: 0 auto;
+  width: 300px;
+  height: 700px;
+  padding: 20px;
+  border: 1px solid gray;
+  box-shadow: 0px 0px 10px black;
+}
+
+.login-form form{
+  margin-top: 100px;
+}
+
+.btnFormLogin{
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.form-group input{
+  margin:5px;
+  border-radius: 50px;
+}
+
+.form-group{
+  color: white;
+  text-align: center;
+}
+
+.sidenav {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 200px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #b6a8b6; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+  border-right: 1px solid gray;
+}
+
+.navigation .sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #2e0e0e;
+  display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #d1a5a5;
+}
+
+.logo{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-items{
+  margin-top: 10px;
+}
+
+.main-content{
+  margin-top: 20px;
+  margin-left: 150px;
+}
+
+

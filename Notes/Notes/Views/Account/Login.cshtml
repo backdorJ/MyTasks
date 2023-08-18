@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Notes.Authorize
+@model LoginViewModel
+
+@{
+	Layout = "_LayoutRegistrationAndLogin";
+	ViewData["Title"] = "Login";
+}
+
+<div class="container">
+	<div class="row login">
+		<div class="col" style="margin-top: 20px">
+			<div class="login-form">
+				<div><h4 class="text-center text-white">Login to continue</h4></div>
+				<form method="post" asp-action="Login" asp-controller="Account">
+					<div class="form-group">
+						<label asp-for="Email"></label>
+						<input asp-for="Email" class="form-control">
+						<span asp-validation-for="Email"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Password"></label>
+						<input asp-for="Password" class="form-control">
+						<span asp-validation-for="Password"></span>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btnFormLogin">Login</button>
+						<a asp-action="Register" asp-controller="Account" class="btn btn-secondary btnFormLogin">Create Account</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
