@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Notes.Authorize;
 using Notes.Data;
+using Notes.Implementashions;
+using Notes.Interfaces;
 using Serilog;
 using Serilog.Events;
 
@@ -31,12 +33,15 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
         options.LoginPath = "/Account/Login");
 
+builder.Services.AddScoped<INotesRepository, SQLNotesRepository>();
+
 builder.Services.Configure<RouteOptions>(options =>
 {
     options.LowercaseUrls = true;
     options.AppendTrailingSlash = true;
     options.LowercaseQueryStrings = true;
 });
+
 // Configuration
 builder.Configuration.AddUserSecrets<Program>();
 

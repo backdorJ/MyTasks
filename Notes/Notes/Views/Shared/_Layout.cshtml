@@ -16,11 +16,11 @@
 	<section class="navigation">
 		<div class="sidenav">
 			<div class="logo">
-				<img src="images/label.png" alt="" style="width: 100px">
+				<img src="~/images/label.png" asp-append-version="true" alt="" style="width: 100px">
 			</div>
 			<div class="nav-items">
 				<a href="#">Profile</a>
-				<a href="#">Add new note</a>
+				<a asp-action="AddNotes" asp-controller="Notes">Add new note</a>
 				<a href="#">Settings</a>
 				<a asp-action="Logout" asp-controller="Account">Logout</a>
 			</div>
