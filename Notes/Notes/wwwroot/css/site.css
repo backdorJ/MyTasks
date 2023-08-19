@@ -112,3 +112,21 @@ body {
 .form-elements{
   padding-top: 10px;
 }
+
+.card-header a{
+  text-decoration: none;
+}
+
+.add-style{
+  width: 100%;
+}
+
+.card-bucket{
+  width: 600px;
+  height: 300px;
+}
+
+.detail-card{
+  height: 100%;
+  width: 100%;
+}

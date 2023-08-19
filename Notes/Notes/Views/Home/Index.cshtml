@@ -1,46 +1,36 @@
-﻿@{
+﻿@using Notes.DictionaryColors
+@model List<NotesViewModel>
+@{
 	ViewData["Title"] = "Home Page";
 }
 
 
 <div class="row">
-	<div class="col-3">
-		<div class="card text-bg-primary mb-3 cardShadow" style="max-width: 18rem;">
-			<div class="card-header">Header</div>
-			<div class="card-body">
-				<h5 class="card-title">Primary card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+	@foreach (var card in Model)
+	{
+		if(card == null) continue;
+		var color = TakeColor.GetColor[card.Color ?? 0];
+		<div class="col-3">
+			<div class="card cardShadow @color mb-3" style="max-width: 18rem;">
+				<div class="card-header">
+					<a class="text-dark" asp-controller="Notes" asp-action="DetailNote" asp-route-id="@card.Id">@card.Title</a>
+				</div>
+				<div class="card-body" style="height: 100px">
+					<p class="card-text">
+						@if (@card.Description?.Length > 90)
+						{
+							@card.Description.Substring(0, 90);
+						}
+						else
+						{
+							@card.Description
+						}
+					</p>
+				</div>
+				<div class="card-footer">
+					Last update: @card.LastUpdate
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="col-3">
-		<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-			<div class="card-header">Header</div>
-			<div class="card-body">
-				<h5 class="card-title">Primary card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-3">
-		<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-			<div class="card-header">Header</div>
-			<div class="card-body">
-				<h5 class="card-title">Primary card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-3">
-		<div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-			<div class="card-header">Header</div>
-			<div class="card-body">
-				<h5 class="card-title">Primary card title</h5>
-				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			</div>
-		</div>
-	</div>
+	}
 </div>

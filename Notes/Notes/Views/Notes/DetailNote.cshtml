@@ -1,0 +1,25 @@
+@using Notes.DictionaryColors
+@model NotesViewModel
+
+@{
+	Layout = "_Layout";
+	var color = @TakeColor.GetColor[Model.Color ?? 0] ?? "red";
+}
+
+<div class="row">
+	<div class="col align-content-center">
+		<div class="card-bucket">
+			<div class="card cardShadow detail-card @color mb-3">
+				<div class="card-header">@Model.Title</div>
+				<div class="card-body text-primary">
+					<p class="card-text">@Model.Description</p>
+				</div>
+				<div class="card-footer">
+					<a class="btn btn-success" asp-action="EditeNote" asp-controller="Notes" asp-route-id="@Model.Id">Edit</a>
+					<a class="btn btn-danger" asp-action="" asp-controller="">Delete</a>
+					<a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,44 @@
+@using Notes.DictionaryColors
+@using Notes.Enum
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model NotesViewModel
+
+@{
+	Layout = "_Layout";
+	var color = TakeColor.GetColor[Model.Color ?? 0];
+}
+
+<div class="row">
+	<div class="col align-content-center">
+		<div class="card-bucket" style="width: 600px;height: 580px">
+			<div class="card cardShadow detail-card @color mb-3">
+				@if (ViewBag.IsSuccess == true)
+				{
+					<div class="alert alert-success" role="alert">
+						Data updated!
+					</div>
+				}
+				<form method="post" asp-action="EditeNote" asp-controller="Notes">
+					<input asp-for="Id" value="@Model.Id" type="hidden">
+					<input asp-for="ApplicationUserId" value="@Model.ApplicationUserId" type="hidden"/>
+					<input asp-for="LastUpdate" type="hidden" value="@DateTime.Now.ToShortTimeString()"/>
+					<div class="card-header">
+						<label asp-for="Title"></label>
+						<input class="form-control" asp-for="Title">
+					</div>
+					<div class="card-body text-primary">
+						<label class="text-dark" asp-for="Description"></label>
+						<textarea  style= "resize: none;" cols="10" rows="10" asp-for="Description" class="form-control"></textarea>
+						<div class="form-elements">
+							<select class="text-dark form-select" asp-for="Color" asp-items="@Html.GetEnumSelectList<Colors>()"></select>
+						</div>
+					</div>
+					<div class="card-footer">
+						<button type="submit" class="btn btn-success">Save</button>
+						<a class="btn btn-primary" asp-action="Index" asp-controller="Home">Back</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
