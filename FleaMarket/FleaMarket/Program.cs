@@ -1,4 +1,6 @@
 using FleaMarket.Data;
+using FleaMarket.Implentashions;
+using FleaMarket.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration["ConnectionString"]));
+builder.Services.AddScoped<IAnnouncementsRepository, SQLAnnouncementRepository>();
 
 var app = builder.Build();
 
