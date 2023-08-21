@@ -3,29 +3,46 @@
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>@ViewData["Title"] - FleaMarket</title>
+	<title>FleaMarket</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 	<link rel="stylesheet" href="~/FleaMarket.styles.css" asp-append-version="true"/>
+	<link rel="icon" href="~/images/iconLogoPreview.png" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Poppins:ital,wght@0,100;0,500;0,600;0,700;0,800;0,900;1,100;1,200&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-		<div class="container-fluid">
-			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FleaMarket</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-			        aria-expanded="false" aria-label="Toggle navigation">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container">
+			<a class="navbar-brand" asp-action="ViewAnnouncements" asp-controller="Main">
+				<img src="~/images/iconBrand.png" alt="" asp-append-version="true" style="width: 80px">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-				<ul class="navbar-nav flex-grow-1">
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Category
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a asp-action="ViewCarCategory" asp-controller="Main" class="dropdown-item text-dark">Cars</a>
+							</li>
+							<li>
+								<a class="dropdown-item text-dark" href="#">Clothes</a>
+							</li>
+						</ul>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-					</li>
-				</ul>
+					<a class="nav-link text-dark" href="#">Features</a>
+					<a class="nav-link text-dark" href="#">Pricing</a>
+				</div>
+				<partial name="LoginAndRegistraionPartial"/>
 			</div>
 		</div>
 	</nav>
@@ -38,7 +55,6 @@
 
 <footer class="border-top footer text-muted">
 	<div class="container">
-		&copy; 2023 - FleaMarket - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 	</div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

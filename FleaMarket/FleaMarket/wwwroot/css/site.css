@@ -1,18 +1,81 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
+
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Oswald', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 60px;
+}
+
+.view-image{
+    box-shadow: 0px 0px 10px black;
+    border-bottom: 1px solid gray;
+}
+
+.ml-auto{
+    margin-left: auto !important;
+}
+
+.category-car-list{
+    margin-top: 20px;
+}
+
+.form-view{
+    width: 400px;
+}
+
+.form-group input{
+    border-radius: 50px;
+}
+
+.form-group label{
+    padding: 10px;
+}
+.form-group button{
+    width: 100%;
+    border-radius: 50px;
+}
+
+.btn-form{
+    display: flex;
+    justify-content: center;
+}
+
+.login-view{
+    margin-top: 50px;
+}
+
+.form-view{
+    margin-top: 100px;
+}
+
+.register-view{
+    margin-top: 50px;
+}
+
+.form-view-register{
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+.bth-register{
+    margin-top: 20px;
+}
+
+.register-image{
+    margin-left: 50px;
 }

@@ -1,4 +1,5 @@
 using FleaMarket.Data;
+using FleaMarket.Enum;
 using FleaMarket.Interfaces;
 using FleaMarket.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +15,13 @@ public class SQLAnnouncementRepository : IAnnouncementsRepository
         _context = context;
     }
 
-    public async Task<List<AnnouncementModel>> GetAnnouncements()
+    public async Task<List<AnnouncementModel>> GetAnnouncementsAsync()
         => await _context.Announcements.ToListAsync();
+
+    public async Task<List<AnnouncementModel>> GetListModelCategoryAnnouncementsAsync(string category)
+        => await _context.Announcements
+            .Where(filter => filter.Category == category)
+            .ToListAsync();
 
     private bool _disposed = false;
 

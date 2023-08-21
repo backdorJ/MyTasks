@@ -1,18 +1,22 @@
-@model TModel
+@model List<AnnouncementModel>
 
 @{
-	Layout = null;
+	Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-	<title>title</title>
-</head>
-<body>
-<div>
-	  
+<div class="row category-car-list">
+	@foreach (var view in Model)
+		{
+			<div class="col col-3">
+				<div class="card border-dark" style="width: 18rem; width: 286px; box-shadow: 0px 0px 5px gray">
+					<a asp-action="" asp-controller="" asp-route-id="@view.Id">
+						<img src="@view.Image" class="card-img-top" alt="...">
+					</a>
+					<div class="card-body">
+						<h5 class="card-title">@view.Title</h5>
+						<p class="card-text">Price: @view.Price</p>
+					</div>
+				</div>
+			</div>
+		}		
 </div>
-</body>
-</html>

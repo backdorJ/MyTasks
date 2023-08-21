@@ -1,0 +1,42 @@
+@model RegisterModel
+
+<div class="row register-view">
+	<div class="col-6">
+		<div class="register-image">
+			<img src="/images/registerImages/registerBackgroundImage.jpg" style="width: 500px; border-radius: 40px" alt="">
+		</div>
+	</div>
+	<div class="col-6">
+		<div class="form-view-register">
+			@if (ViewBag.ErrorRegister == true)
+			{
+				<div class="alert alert-danger" role="alert">
+					Failed input data
+				</div>
+			}
+			<form method="post"
+			      asp-action="Register"
+			      asp-controller="Account">
+				<div class="form-group">
+					<label asp-for="Email"></label>
+					<input asp-for="Email" class="form-control">
+				</div>
+				<div class="form-group">
+					<label asp-for="UserName"></label>
+					<input asp-for="UserName" class="form-control">
+				</div>
+				<div class="form-group">
+					<label asp-for="Password"></label>
+					<input asp-for="Password" class="form-control">
+				</div>
+				<div class="form-group">
+					<label asp-for="ConfirmPassword"></label>
+					<input asp-for="ConfirmPassword" class="form-control">
+				</div>
+				<div class="form-group bth-register">
+					<button type="submit" class="btn btn-success">Straight to cheap prices !</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

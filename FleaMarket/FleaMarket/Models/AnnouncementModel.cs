@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FleaMarket.Enum;
 
 namespace FleaMarket.Models;
 
@@ -20,4 +21,6 @@ public class AnnouncementModel
     public string? Image { get; set; }
     [Required]
     public string AnnouncementOwner { get; set; }
+
+    public string? Category { get; set; }
 }

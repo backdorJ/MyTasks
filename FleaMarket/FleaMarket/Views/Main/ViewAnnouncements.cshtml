@@ -1,1 +1,30 @@
 @model List<AnnouncementModel>
+
+@{
+	Layout = "_Layout";
+}
+
+<div class="row view-image" style="margin-top: 20px">
+	<div class="col">
+		<div class="main-background-image text-center">
+			<img src="/images/ViewBackgroundMain.png" alt="">
+		</div>
+	</div>
+</div>
+
+<div class="row" style="margin-top: 100px">
+	@foreach (var view in Model)
+	{
+		<div class="col col-3">
+			<div class="card border-dark" style="width: 18rem; width: 286px; box-shadow: 0px 0px 5px gray">
+				<a asp-action="" asp-controller="" asp-route-id="@view.Id">
+					<img src="@view.Image" class="card-img-top" alt="...">
+				</a>
+				<div class="card-body">
+					<h5 class="card-title">@view.Title</h5>
+					<p class="card-text">Price: @view.Price</p>
+				</div>
+			</div>
+		</div>
+	}
+</div>
