@@ -1,0 +1,26 @@
+@model List<AnnouncementModel>
+
+<div class="row view-favourite-object">
+	@foreach (var item in Model)
+	{
+		<div class="col-4 cardObject">
+			<div class="card" style="width: 18rem;">
+				<div class="card-header">
+					<img src="@item.Image" class="card-img-top" alt="..." style="width: 100px;">
+					<h5>Price: @item.Price ₽</h5>
+				</div>
+				<div class="card-body" style="height: 200px">
+					<p class="card-text">@item.Description</p>
+				</div>
+				<div class="card-footer">
+					<a asp-action="" asp-controller="" class="btn btn-success">
+						<img src="/images/sendMessage.png" style="width: 25px;" alt="" asp-append-version="true">
+					</a>
+					<a asp-action="" asp-controller="" class="btn btn-danger">
+						<img src="/images/trash.png" style="width: 25px;" alt="" asp-append-version="true">
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

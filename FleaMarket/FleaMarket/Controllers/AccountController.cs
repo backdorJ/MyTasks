@@ -3,6 +3,7 @@ using FleaMarket.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Serilog;
 
 namespace FleaMarket.Controllers;
 
@@ -17,6 +18,12 @@ public class AccountController : Controller
     {
         _userManager = userManager;
         _signInManager = signInManager;
+    }
+
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("ViewAnnouncements", "Main");
     }
 
     #region Register
@@ -57,27 +64,33 @@ public class AccountController : Controller
     #endregion
 
     #region Login Logic
-    
+
     [HttpGet]
-    public async Task<IActionResult> Login(string returnUrl)
+    public async Task<IActionResult> Login(string returnUrl = null)
     {
         return View(new LoginModel(){ReturnUrl = returnUrl});
     }
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginModel model)
     {
         if (ModelState.IsValid)
         {
-            var user = await _userManager.FindByIdAsync(_userManager.GetUserId(User));
-            await _signInManager
-                .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                var result = await _signInManager
+                    .PasswordSignInAsync(user, model.Password, model.RememberMe, false);
+                if (result.Succeeded)
+                {
+                    if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl))
+                        return Redirect(model.ReturnUrl);
 
-            if (model.ReturnUrl != null && Url.IsLocalUrl(model.ReturnUrl))
-                return Redirect(model.ReturnUrl);
-
-            return RedirectToAction("ViewAnnouncements", "Main");
+                    return RedirectToAction("ViewAnnouncements", "Main");
+                }
+            }
+            
+            Log.Error("Error invalid user: {user}", user);
         }
 
         ViewBag.Error = true;

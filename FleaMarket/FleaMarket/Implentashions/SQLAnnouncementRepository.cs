@@ -23,6 +23,22 @@ public class SQLAnnouncementRepository : IAnnouncementsRepository
             .Where(filter => filter.Category == category)
             .ToListAsync();
 
+    public async Task<AnnouncementModel> GetAnnouncementAsync(int id)
+        => await _context.Announcements.FirstOrDefaultAsync(x => x.Id == id);
+
+    public async Task AddToFavouriteAsync(AnnouncementsUsers model)
+    {
+        await _context.AnnouncementsUsers.AddAsync(model);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task<List<AnnouncementModel>> GetAllAnnouncementsByIdUserAsync(string userId)
+        => await _context
+            .AnnouncementsUsers
+            .Where(x => x.UserId == userId)
+            .Select(x => x.Announcement)
+            .ToListAsync();
+
     private bool _disposed = false;
 
     public void Dispose()

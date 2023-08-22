@@ -1,0 +1,35 @@
+@model AnnouncementModel
+
+@{
+	Layout = "_Layout";
+}
+
+<div class="row" xmlns="http://www.w3.org/1999/html">
+	<div class="col-6">
+		<div class="imageViewDetail">
+			<img src="@Model.Image" alt="" asp-append-version="true" style="width: 500px">
+		</div>
+		<div class="detailInfo">
+			<div class="Title">
+				<h5 class="text-dark">Title: @Model.Title</h5>
+			</div>
+			<div class="Description">
+				<h4 class="text-center text-muted">Description</h4>
+				<p class="text-dark descr-p">@Model.Description</p>
+			</div>
+		</div>
+		
+	</div>
+	<div class="col-6">
+		<div class="menu-detail">
+			<div class="price-view">
+				<h2 class="text-dark">@Model.Price ₽</h2>
+			</div>
+			<div class="btn-menu-view">
+				<a class="btn btn-success" asp-action="AddToFavourite" asp-controller="Main" asp-route-id="@Model.Id" style="width: 150px; height: 50px">Favourite</a>
+				<a class="btn btn-secondary" style="width: 150px; height: 50px;">Send message</a>
+				<a class="btn btn-primary" style="width: 150px; height: 50px;">Add to bucket</a>
+			</div>
+		</div>
+	</div>
+</div>

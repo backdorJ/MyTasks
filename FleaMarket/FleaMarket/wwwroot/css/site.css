@@ -61,6 +61,7 @@ body {
 
 .form-view{
     margin-top: 100px;
+    margin-left: 20px;
 }
 
 .register-view{
@@ -78,4 +79,68 @@ body {
 
 .register-image{
     margin-left: 50px;
+}
+
+.imageViewDetail{
+    margin: 20px;
+}
+
+.imageViewDetail img{
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+.Description{
+    border-radius: 50px;
+    height: 500px;
+    max-width: 500px;
+    background-color: rgba(188, 183, 183, 0.5);
+}
+
+.descr-p{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Title{
+    background-color: rgba(188, 183, 183, 0.5);;
+    max-width: 500px;
+    border-radius: 50px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+.Title h5{
+    padding-left: 10px;
+}
+
+.menu-detail{
+    margin-left: 100px;
+    margin-top: 50px;
+    width: 500px;
+    height: 300px;
+}
+
+.btn-menu-view{
+
+}
+
+.btn-menu-view a{
+    padding:10px;
+    border-radius: 50px;
+}
+
+.price-view{
+    margin-bottom: 20px;
+}
+
+.price-view h2{
+    border-bottom: 1px solid gray;
+}
+
+.info-announcement{
+    display: inline-block;
+}
+
+.cardObject{
+    margin-top: 50px;
 }
