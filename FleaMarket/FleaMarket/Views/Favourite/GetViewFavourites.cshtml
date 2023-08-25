@@ -1,26 +1,59 @@
-@model List<AnnouncementModel>
+@model AnnouncementAndRecipesFavouriteModel
 
 <div class="row view-favourite-object">
-	@foreach (var item in Model)
+	@if (Model.AnnouncementModels != null)
 	{
-		<div class="col-4 cardObject">
-			<div class="card" style="width: 18rem;">
-				<div class="card-header">
-					<img src="@item.Image" class="card-img-top" alt="..." style="width: 100px;">
-					<h5>Price: @item.Price ₽</h5>
-				</div>
-				<div class="card-body" style="height: 200px">
-					<p class="card-text">@item.Description</p>
-				</div>
-				<div class="card-footer">
-					<a asp-action="" asp-controller="" class="btn btn-success">
-						<img src="/images/sendMessage.png" style="width: 25px;" alt="" asp-append-version="true">
-					</a>
-					<a asp-action="" asp-controller="" class="btn btn-danger">
-						<img src="/images/trash.png" style="width: 25px;" alt="" asp-append-version="true">
-					</a>
+		@foreach (var item in Model.AnnouncementModels)
+		{
+			<div class="col-4 cardObject">
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">
+						<img src="@item.Image" class="card-img-top" alt="..." style="width: 100px;">
+						<h5>Price: @item.Price ₽</h5>
+					</div>
+					<div class="card-body" style="height: 200px">
+						<p class="card-text">@item.Description</p>
+					</div>
+					<div class="card-footer">
+						<a asp-action="" asp-controller="" class="btn btn-success">
+							<img src="/images/sendMessage.png" style="width: 25px;" alt="" asp-append-version="true">
+						</a>
+						<a asp-action="DeleteFavouriteItem" asp-controller="Favourite" asp-route-id="@item.Id" class="btn btn-danger">
+							<img src="/images/trash.png" style="width: 25px;" alt="" asp-append-version="true">
+						</a>
+					</div>
 				</div>
 			</div>
-		</div>
+		}
+	}
+	@if (Model.RecipeModel != null)
+	{
+		@foreach (var recipe in Model.RecipeModel)
+		{
+			var path = $"https://spoonacular.com/recipeImages/{recipe.Id}-240x150.jpg";
+
+
+			<div class="col-4 cardObject">
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">
+						<a asp-action="ViewDetailRecipe" asp-controller="Main" asp-route-id="@recipe.Id" class="btn text-dark">
+							<img src="@path" class="card-img-top" alt="..." style="width: 100px;">
+						</a>
+						<h5>@recipe.title[..10]</h5>
+					</div>
+					<div class="card-body" style="height: 200px">
+						<p class="card-text">y</p>
+					</div>
+					<div class="card-footer">
+						<a asp-action="" asp-controller="" class="btn btn-success">
+							<img src="/images/sendMessage.png" style="width: 25px;" alt="" asp-append-version="true">
+						</a>
+						<a asp-action="DeleteFavouriteRecipe" asp-controller="Favourite" asp-route-id="@recipe.Id" class="btn btn-danger">
+							<img src="/images/trash.png" style="width: 25px;" alt="" asp-append-version="true">
+						</a>
+					</div>
+				</div>
+			</div>
+		}
 	}
 </div>

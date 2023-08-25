@@ -39,6 +39,17 @@ public class SQLAnnouncementRepository : IAnnouncementsRepository
             .Select(x => x.Announcement)
             .ToListAsync();
 
+    public async Task<bool> DeleteAnnouncementAsync(int announcementId, string userId)
+    {
+        var model = await _context
+            .AnnouncementsUsers
+            .Where(x => x.UserId == userId && x.AnnouncementId == announcementId)
+            .FirstOrDefaultAsync();
+        _context.Remove(model);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+    
     private bool _disposed = false;
 
     public void Dispose()

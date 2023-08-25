@@ -1,0 +1,22 @@
+@model AllRecipes
+
+
+<div class="row justify-content-center">
+	@foreach (var recipe in Model.Recipes)
+	{
+		var path = $"https://spoonacular.com/recipeImages/{recipe.Id}-240x150.jpg";
+		
+		<div class="col-3 mb-3 g-3 mx-2">
+			<div class="card" style="width: 18rem;">
+				<a asp-action="ViewDetailRecipe" asp-controller="Main" asp-route-id="@recipe.Id" class="btn text-dark">
+					<img src="@path" class="card-img-top" alt="...">
+				</a>
+				<div class="card-body">
+					<p class="card-text" style="height: 50px;">
+						@(recipe.title.PadRight(10,'.').Substring(0, 10))
+					</p>
+				</div>
+			</div>
+		</div>
+	}
+</div>

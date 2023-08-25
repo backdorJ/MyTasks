@@ -1,3 +1,4 @@
+using FleaMarket.API.Interaces;
 using FleaMarket.Authoriz;
 using FleaMarket.Data;
 using FleaMarket.Enum;
@@ -13,12 +14,25 @@ public class MainController : Controller
 {
     private readonly IAnnouncementsRepository _repository;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IBeerRepository _beerRepo;
+    private readonly IUserRepository _userRepository;
+    private readonly IFoodRepository _foodRepository;
+    private readonly IRecipeRepository _recipeRepository;
+
     public MainController(
         IAnnouncementsRepository repository,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IBeerRepository beerRepo,
+        IUserRepository userRepository,
+        IFoodRepository foodRepository,
+        IRecipeRepository recipeRepository)
     {
         _repository = repository;
         _userManager = userManager;
+        _beerRepo = beerRepo;
+        _userRepository = userRepository;
+        _foodRepository = foodRepository;
+        _recipeRepository = recipeRepository;
     }
 
     [HttpGet]
@@ -31,6 +45,57 @@ public class MainController : Controller
     public async Task<IActionResult> ViewCarCategory()
     {
         return View(await _repository.GetListModelCategoryAnnouncementsAsync("Car"));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ViewBeerCategory()
+    {
+        return View(await _beerRepo.GetBeersAsync(100));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ViewRecipeCategory()
+    {
+        var recipes = await _foodRepository.GetAllFoodsAsync(100);
+        return View(recipes);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ViewDetailRecipe(int id)
+    {
+        var detailRecipe = await _foodRepository.GetDetailRecipe(id);
+        return View(detailRecipe);
+    }
+    
+    [HttpGet]
+    [Authorize]
+    public async Task<IActionResult> AddToFavouriteRecipe(int id)
+    {
+        var recipe = await _foodRepository.GetDetailRecipe(id);
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            if (recipe != null)
+            {
+                var model = new RecipesUsers()
+                {
+                    RecipeId = recipe.Id,
+                    UserId = user.Id
+                };
+
+                await _recipeRepository.AddedInDatabaseRecipeAsync(recipe);
+                await _recipeRepository.AddRecipeInFavouriteAsync(model);
+                return RedirectToAction("GetViewFavourites", "Favourite");
+            }
+        }
+        
+        return RedirectToAction("ViewAnnouncements", "Main");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ViewEmploymentsCompany()
+    {
+        return View(await _userRepository.GetUsersAsync(100));
     }
 
     [HttpGet]
@@ -50,13 +115,12 @@ public class MainController : Controller
             var announcement = await _repository.GetAnnouncementAsync(id);
             if (announcement != null)
             {
-                Log.Information("Announcment id {id}", announcement.Id);
                 var model = new AnnouncementsUsers()
                 {
                     UserId = user.Id,
-                    AnnouncementId = announcement.Id
+                    AnnouncementId = announcement.Id,
+                    IsAdded = true
                 };
-
                 await _repository.AddToFavouriteAsync(model);
                 return RedirectToAction("GetViewFavourites", "Favourite");
             }

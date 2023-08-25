@@ -1,0 +1,14 @@
+@model List<UserModel>
+
+<div class="row">
+	@foreach (var employee in Model)
+	{
+		<div class="card g-3 mx-3" style="width: 18rem;">
+			<img src="@employee.avatar" class="card-img-top" alt="...">
+			<div class="card-body">
+				<a asp-action="" asp-controller="" asp-route-id="@employee.id"><p class="btn text-dark card-text">@employee.first_name @employee.last_name</p></a>
+			</div>
+		</div>
+	}
+</div>
+

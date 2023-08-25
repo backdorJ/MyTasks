@@ -1,3 +1,4 @@
+using FleaMarket.API.Models.Recipe;
 using FleaMarket.Authoriz;
 using FleaMarket.Models;
 
@@ -11,4 +12,6 @@ public class AnnouncementsUsers
 
     public int AnnouncementId { get; set; }
     public AnnouncementModel Announcement { get; set; }
+
+    public bool IsAdded { get; set; }
 }

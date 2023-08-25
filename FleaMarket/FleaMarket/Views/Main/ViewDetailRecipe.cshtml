@@ -1,0 +1,20 @@
+@model Recipe
+
+<div class="row">
+	<div class="col-6">
+		<h1 class="text-dark">@Model.title</h1>
+		<div class="img">
+			<img src="@Model.image" alt="">
+		</div>
+	</div>
+	<div class="col-6 mt-5">
+		<div class="info">
+			<p>
+				@Html.Raw(Model.summary)
+			</p>
+		</div>
+		<div class="buttons">
+			<a asp-action="AddToFavouriteRecipe" asp-controller="Main" asp-route-id="@Model.Id" class="btn btn-success">Favourite</a>
+		</div>
+	</div>
+</div>

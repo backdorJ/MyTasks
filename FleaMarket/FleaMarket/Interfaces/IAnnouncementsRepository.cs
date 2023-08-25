@@ -14,4 +14,7 @@ public interface IAnnouncementsRepository : IDisposable
 
     Task AddToFavouriteAsync(AnnouncementsUsers model);
     Task<List<AnnouncementModel>> GetAllAnnouncementsByIdUserAsync(string userId);
+
+    Task<bool> DeleteAnnouncementAsync(int announcementId, string userId);
+
 }

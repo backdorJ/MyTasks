@@ -3,6 +3,7 @@ using System;
 using FleaMarket.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FleaMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230824174058_Recipes")]
+    partial class Recipes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,46 +33,53 @@ namespace FleaMarket.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("aggregateLikes")
+                    b.Property<int>("aggregateLikes")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("cookingMinutes")
+                    b.Property<int>("cookingMinutes")
                         .HasColumnType("integer");
 
                     b.Property<string>("creditsText")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("healthScore")
+                    b.Property<int>("healthScore")
                         .HasColumnType("integer");
 
                     b.Property<string>("image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("imageType")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("license")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("preparationMinutes")
+                    b.Property<int>("preparationMinutes")
                         .HasColumnType("integer");
 
-                    b.Property<double?>("pricePerServing")
+                    b.Property<double>("pricePerServing")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("readyInMinutes")
+                    b.Property<int>("readyInMinutes")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("servings")
+                    b.Property<int>("servings")
                         .HasColumnType("integer");
 
                     b.Property<string>("sourceName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("summary")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("title")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -157,21 +167,6 @@ namespace FleaMarket.Migrations
                     b.HasIndex("AnnouncementId");
 
                     b.ToTable("AnnouncementsUsers");
-                });
-
-            modelBuilder.Entity("FleaMarket.Data.RecipesUsers", b =>
-                {
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.HasKey("RecipeId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RecipesUsers");
                 });
 
             modelBuilder.Entity("FleaMarket.Models.AnnouncementModel", b =>
@@ -363,25 +358,6 @@ namespace FleaMarket.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("FleaMarket.Data.RecipesUsers", b =>
-                {
-                    b.HasOne("FleaMarket.API.Models.Recipe.Recipe", "Recipe")
-                        .WithMany("Users")
-                        .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FleaMarket.Authoriz.ApplicationUser", "User")
-                        .WithMany("Recipes")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Recipe");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -433,16 +409,9 @@ namespace FleaMarket.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FleaMarket.API.Models.Recipe.Recipe", b =>
-                {
-                    b.Navigation("Users");
-                });
-
             modelBuilder.Entity("FleaMarket.Authoriz.ApplicationUser", b =>
                 {
                     b.Navigation("Announcements");
-
-                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("FleaMarket.Models.AnnouncementModel", b =>

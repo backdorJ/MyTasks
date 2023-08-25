@@ -3,6 +3,7 @@ using System;
 using FleaMarket.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FleaMarket.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230824180939_AddedRecipesUsersTable")]
+    partial class AddedRecipesUsersTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,46 +33,53 @@ namespace FleaMarket.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("aggregateLikes")
+                    b.Property<int>("aggregateLikes")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("cookingMinutes")
+                    b.Property<int>("cookingMinutes")
                         .HasColumnType("integer");
 
                     b.Property<string>("creditsText")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("healthScore")
+                    b.Property<int>("healthScore")
                         .HasColumnType("integer");
 
                     b.Property<string>("image")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("imageType")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("license")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("preparationMinutes")
+                    b.Property<int>("preparationMinutes")
                         .HasColumnType("integer");
 
-                    b.Property<double?>("pricePerServing")
+                    b.Property<double>("pricePerServing")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("readyInMinutes")
+                    b.Property<int>("readyInMinutes")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("servings")
+                    b.Property<int>("servings")
                         .HasColumnType("integer");
 
                     b.Property<string>("sourceName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("summary")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("title")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");

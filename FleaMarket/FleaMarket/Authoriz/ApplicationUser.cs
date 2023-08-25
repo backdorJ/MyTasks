@@ -6,4 +6,5 @@ namespace FleaMarket.Authoriz;
 public class ApplicationUser : IdentityUser
 {
     public ICollection<AnnouncementsUsers> Announcements { get; set; }   
+    public ICollection<RecipesUsers> Recipes { get; set; }
 }
